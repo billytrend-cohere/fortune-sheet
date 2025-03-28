@@ -3,6 +3,7 @@ name: Release
 on:
   release:
     types: [published]
+  workflow_dispatch: {}
 
 jobs:
   release:
@@ -29,12 +30,3 @@ jobs:
             packages/core/fortune-sheet-core-*.tgz
             packages/react/fortune-sheet-react-*.tgz
             packages/formula-parser/fortune-sheet-formula-parser-*.tgz
-      - run: cd packages/core && npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: cd packages/react && npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: cd packages/formula-parser && npm publish || true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
